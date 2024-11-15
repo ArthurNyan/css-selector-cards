@@ -1,0 +1,68 @@
+html, 
+body, 
+main {
+    background-color: #202020;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-y: hidden;
+}
+
+.list {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+}
+
+.item {
+    background-color: #404040;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 160px;
+    max-height: 144px;
+    height: 100%;
+}
+
+.item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 4px 4px 0 0;
+}
+
+.list .item {
+    filter: brightness(0);
+    transition: all 0.5s;
+}
+
+.list .item:hover {
+    filter: brightness(1);
+    transform: translateZ(200px);
+}
+
+.list .item:hover + * {
+    filter: brightness(0.6);
+    transform: translateZ(150px) rotateY(30deg);
+}
+
+.list .item:hover + * + * {
+    filter: brightness(0.3);
+    transform: translateZ(70px) rotateY(20deg);
+}
+
+.list .item:has(+ *:hover) {
+    filter: brightness(0.6);
+    transform: translateZ(150px) rotateY(-30deg);
+}
+
+.list .item:has(+ * + *:hover) {
+    filter: brightness(0.3);
+    transform: translateZ(70px) rotateY(-20deg);
+}
